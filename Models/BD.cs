@@ -3,7 +3,11 @@ using Dapper;
 
 public static class BD{
     public static string AgregarCandidato(Candidato can){
-
+        Candidato newCandidato = null;
+        using(SqlConnection db = new SqlConnection(_connectionString)){
+            string sql = "INSERT INTO Candidato(Nombre) VALUES (@pCandidato) ";
+            newCandidato = db.QueryFirstOrDefault<Candidato>(sql, new{pCandidato = can});
+        }
         
     }
 
@@ -20,7 +24,7 @@ public static class BD{
     }
     static List<Partido> ListarPartidos(){
         List<Partido> listaPartidos = new List<Partido>();
-        
+
 
         
         return 
