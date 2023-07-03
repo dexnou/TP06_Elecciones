@@ -1,6 +1,6 @@
 using System.Data.SqlClient;
 using Dapper;
-class Partido{
+public class Partido{
     public int IdPartido{get;set;}
     public string Nombre{get;set;}
     public string Logo {get;set;}
@@ -8,4 +8,13 @@ class Partido{
     public DateTime FechaFundacion{get;set;}
     public int CantidadDiputados{get;set;}
     public int CantidadSenadores{get;set;}
+
+
+    public Partido(string nomb, string sweb, DateTime fechafund, int cantDiputados, int cantSenadores){
+        Nombre = nomb; 
+        SitioWeb = sweb; 
+        FechaFundacion = fechafund; 
+        CantidadDiputados = cantDiputados; 
+        CantidadSenadores = cantSenadores; 
+    }
 }
