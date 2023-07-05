@@ -27,9 +27,11 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult GuardarCandidato(int IdPartido, string Apellido, string Nombre, DateTime FechaNacimiento, string Foto, string Postulacion){
-        BD.AgregarCandidato(new Candidato(IdPartido, Apellido, Nombre, FechaNacimiento, Foto, Postulacion));
-        return RedirectToAction("VerDetallePartido", new{IdPartido = IdPartido});
+    public IActionResult GuardarCandidato(Candidato can){
+        BD.AgregarCandidato(can);
+        ViewBag.Partido = BD.VerInfoPartido(can.IdPartido);
+        ViewBag.ListarCandidatos = BD.ListarCandidatos(can.IdPartido);
+        return View("VerDetallePartido");
     }
     
     public IActionResult EliminarCandidato(int IdCandidato, int IdPartido)
@@ -38,13 +40,13 @@ public class HomeController : Controller
         return View("VerDetallePartido");
     }
 
-    IActionResult Elecciones()
+    public IActionResult Elecciones()
     {
-        
+        return View();
     }
 
     IActionResult Creditos()
     {
-
+        return View();
     }
 }
