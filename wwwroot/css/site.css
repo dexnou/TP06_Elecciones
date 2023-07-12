@@ -19,3 +19,27 @@ footer {
   bottom: 0; 
   margin: 10px 0px 20px 0px;
 }
+
+/* HEADER NAV BAR */
+.nav1{
+  text-align: center;
+  background: #10a05d;
+}
+
+.nav1 ul li{
+  display: inline-block;
+  padding: 10px;
+}
+
+.nav1 ul li a{
+  text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif ;
+  font-size: 20px;
+  color:white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.nav1 ul li a:hover{
+  color: blue; /*Ver si sacarlo o no, es solo tema diseño*/
+  text-decoration: underline;
+}

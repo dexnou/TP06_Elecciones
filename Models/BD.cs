@@ -25,19 +25,19 @@ public static class BD{
     }
 
     public static Partido VerInfoPartido(int IdPartido){  
-        // for(int i= 0; i<listaPartido.Count(); i++){
-        //     if(listaPartido[i].IdPartido == IdPartido){
-        //         return listaPartido[i];
-        //     }
-        // }
-        // return null;
-        //Version sql
-        using (SqlConnection db = new SqlConnection(_connectionString))
-        {
-            string sql = "SELECT * FROM Partido WHERE IdPartido = @pIdPartido";
-            listaPartido = db.QueryFirstOrDefault<Partido>(sql, new { pIdPartido = IdPartido });
+        for(int i= 0; i<listaPartido.Count(); i++){
+            if(listaPartido[i].IdPartido == IdPartido){
+                return listaPartido[i];
+            }
         }
-        return listaPartido; 
+        return null;
+        //Version sql
+        // using (SqlConnection db = new SqlConnection(_connectionString))
+        // {
+        //     string sql = "SELECT * FROM Partido WHERE IdPartido = @pIdPartido";
+        //     listaPartido = db.QueryFirstOrDefault<Partido>(sql, new { pIdPartido = IdPartido });
+        // }
+        // return listaPartido; 
     }
 
     public static Candidato VerInfoCandidatos(int IdCandidato){
