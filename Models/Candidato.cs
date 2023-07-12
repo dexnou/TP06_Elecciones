@@ -10,6 +10,9 @@ public class Candidato{
     public string Foto{get;set;}
     public string Postulacion{get;set;}
 
+public Candidato(){
+    
+}
     public Candidato(int idpart, string apelli, string nom, DateTime fechanaci, string ft, string postu){
         IdPartido = idpart;
         Apellido = apelli;

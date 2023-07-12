@@ -16,7 +16,7 @@ public static class BD{
 
     public static int EliminarCandidato(int IdCandidato){
         int RegistrosEliminados = 0;
-        string sql = "DELETE FROM Candidatos WHERE IdCandidato = @pCandidato";
+        string sql = "DELETE FROM Candidato WHERE IdCandidato = @pCandidato";
         using(SqlConnection db = new SqlConnection(_connectionString))
         {
             RegistrosEliminados = db.Execute(sql, new {Candidato = IdCandidato});
@@ -24,14 +24,20 @@ public static class BD{
         return RegistrosEliminados; 
     }
 
-    public static Partido VerInfoPartido(int IdPartido){  //ver si funciona con lista. 
-        List<Partido> listaPartido = null;
-        for(int i= 0; i<listaPartido.Count(); i++){
-            if(listaPartido[i].IdPartido == IdPartido){
-                return listaPartido[i];
-            }
+    public static Partido VerInfoPartido(int IdPartido){  
+        // for(int i= 0; i<listaPartido.Count(); i++){
+        //     if(listaPartido[i].IdPartido == IdPartido){
+        //         return listaPartido[i];
+        //     }
+        // }
+        // return null;
+        //Version sql
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string sql = "SELECT * FROM Partido WHERE IdPartido = @pIdPartido";
+            listaPartido = db.QueryFirstOrDefault<Partido>(sql, new { pIdPartido = IdPartido });
         }
-        return null;
+        return listaPartido; 
     }
 
     public static Candidato VerInfoCandidatos(int IdCandidato){
@@ -43,7 +49,6 @@ public static class BD{
         return null;
     }
     public static List<Partido> ListarPartidos(){
-        List<Partido> listaPartido = null;
         using(SqlConnection db = new SqlConnection(_connectionString))
         {
             string sql = "SELECT * FROM Partido";
@@ -53,8 +58,8 @@ public static class BD{
     }
 
     public static List<Candidato> ListarCandidatos(int IdPartido){
-        string sql = "SELECT * FROM Candidatos";
         using (SqlConnection db = new SqlConnection(_connectionString)){
+            string sql = "SELECT * FROM Candidato";
             listaCandidato = db.Query<Candidato>(sql).ToList();
         }
         return listaCandidato;

@@ -9,9 +9,9 @@ public class Partido{
     public int CantidadDiputados{get;set;}
     public int CantidadSenadores{get;set;}
 
-public Partido(){
+    public Partido(){
     
-}
+    }
     public Partido(string nomb, string sweb, DateTime fechafund, int cantDiputados, int cantSenadores, string log){
         Nombre = nomb; 
         Logo = log;
