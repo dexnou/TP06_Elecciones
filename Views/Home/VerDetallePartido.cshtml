@@ -1,19 +1,29 @@
 
 <p>HOLA</p>
 <h2>@ViewBag.Partido.Nombre</h2>
-  <p>@ViewBag.Partido.Logo</p>
-  <p>@ViewBag.Partido.FechaFundacion</p>
-  <p>Cantidad diputados: </p>
-  <p>@ViewBag.Partido.CantidadDiputados</p>
-  <p>Cantidad senadores: </p>
-  <p>@ViewBag.Partido.CantidadSenadores</p>
-@for(int i = 0; i < ViewBag.CandidatosPartido.Count; i++){
+<p>@ViewBag.Partido.Logo</p>
+<p>@ViewBag.Partido.FechaFundacion</p>
+<p>Cantidad diputados: </p>
+<p>@ViewBag.Partido.CantidadDiputados</p>
+<p>Cantidad senadores: </p>
+<p>@ViewBag.Partido.CantidadSenadores</p>
+
+@foreach (var item in ViewBag.CandidatosPartido)
+{
   <div class="card">
     <div class="container">
-      <a href='@Url.Action("VerDetalleCandidato","ViewBag.ListaPartidos[i].IdPartido", "ViewBag.ListarCandidatos[i].IdCandidato")'><p>@ViewBag.CandidatosPartido[i].Nombre</p></a>
-      <p>@ViewBag.CandidatosPartido[i].Nombre</p>
+      <a href='@Url.Action("VerDetalleCandidato",new{IdCandidato = item.IdCandidato})'><p>@item.Nombre</p></a>
     </div>
   </div>
 }
+
+@* (int i = 0; i < ViewBag.CandidatosPartido.Count; i++){
+  <div class="card">
+    <div class="container">
+      <a href='@Url.Action("VerDetalleCandidato",new{IdCandidato = ViewBag.CandidatosPartido[i].IdCandidato})'><p>@ViewBag.CandidatosPartido[i].Nombre</p></a>
+      <p>@ViewBag.CandidatosPartido[i].Nombre</p>
+    </div>
+  </div>
+} *@
 <a href='@Url.Action("AgregarCandidato","ViewBag.ListaPartidos[i].IdPartido")'>Agregar un candidato.</a>
 

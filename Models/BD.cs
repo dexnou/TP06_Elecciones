@@ -39,14 +39,23 @@ public static class BD{
         // }
         // return listaPartido; 
     }
-
+    
     public static Candidato VerInfoCandidatos(int IdCandidato){
-        for(int i= 0; i<listaCandidato.Count(); i++){
-            if(listaCandidato[i].IdCandidato == IdCandidato){
-                return listaCandidato[i];
-            }
+        // for(int i= 0; i<listaCandidato.Count(); i++){
+        //     if(listaCandidato[i].IdCandidato == IdCandidato){
+        //         return listaCandidato[i];
+        //     }
+        // }
+        // return null;
+        Candidato candidato;
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string sql = "SELECT * FROM Candidato WHERE IdCandidato = @pIdCandidato";
+            candidato = db.QueryFirstOrDefault<Candidato>(sql, new { pIdCandidato = IdCandidato });
         }
-        return null;
+        return candidato; 
+
+
     }
     public static List<Partido> ListarPartidos(){
         using(SqlConnection db = new SqlConnection(_connectionString))
@@ -59,8 +68,8 @@ public static class BD{
 
     public static List<Candidato> ListarCandidatos(int IdPartido){
         using (SqlConnection db = new SqlConnection(_connectionString)){
-            string sql = "SELECT * FROM Candidato";
-            listaCandidato = db.Query<Candidato>(sql).ToList();
+            string sql = "SELECT * FROM Candidato WHERE IdPartido = @pIdPartido";
+            listaCandidato = db.Query<Candidato>(sql, new{ pIdPartido = IdPartido }).ToList();
         }
         return listaCandidato;
     }
