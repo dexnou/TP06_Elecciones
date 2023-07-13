@@ -1,7 +1,7 @@
 
 <p>HOLA</p>
 <h2>@ViewBag.Partido.Nombre</h2>
-<p>@ViewBag.Partido.Logo</p>
+<img src="@ViewBag.Partido.Logo" alt="Foto Partido">
 <p>@ViewBag.Partido.FechaFundacion</p>
 <p>Cantidad diputados: </p>
 <p>@ViewBag.Partido.CantidadDiputados</p>
@@ -25,5 +25,5 @@
     </div>
   </div>
 } *@
-<a href='@Url.Action("AgregarCandidato","ViewBag.ListaPartidos[i].IdPartido")'>Agregar un candidato.</a>
+<a href='@Url.Action("AgregarCandidato", new{IdPartido = ViewBag.Partido.IdPartido})'<p>Agregar un candidato.</p></a>
 
