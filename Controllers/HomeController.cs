@@ -26,14 +26,17 @@ public class HomeController : Controller
         return View("AgregarCandidato"); //form
     }
 
-    [HttpPost]
-    public IActionResult GuardarCandidato(Candidato can){
-        BD.AgregarCandidato(can);
-        ViewBag.Partido = BD.VerInfoPartido(can.IdPartido);
-        ViewBag.ListarCandidatos = BD.ListarCandidatos(can.IdPartido);
-        return View("VerDetallePartido");
-    }
     
+    // public IActionResult GuardarCandidato(Candidato can){
+    //     BD.AgregarCandidato(can);
+    //     ViewBag.Partido = BD.VerInfoPartido(can.IdPartido);
+    //     ViewBag.ListarCandidatos = BD.ListarCandidatos(can.IdPartido);
+    //     return View("VerDetallePartido", new{IdPartido = can.IdPartido});
+    // }
+    [HttpPost] public IActionResult GuardarCandidato(Candidato can){
+        BD.AgregarCandidato(can);
+        return RedirectToAction("VerDetallePartido", new {IdPartido=can.IdPartido});
+    }
     public IActionResult EliminarCandidato(int IdCandidato, int IdPartido)
     {
         BD.EliminarCandidato(IdCandidato);

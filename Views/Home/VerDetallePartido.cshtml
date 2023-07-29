@@ -8,13 +8,23 @@
 <p>Cantidad senadores: </p>
 <p>@ViewBag.Partido.CantidadSenadores</p>
 
-@foreach (var item in ViewBag.CandidatosPartido)
+@* @foreach (var item in ViewBag.CandidatosPartido)
 {
   <div class="card">
     <div class="container">
       <a href='@Url.Action("VerDetalleCandidato",new{IdCandidato = item.IdCandidato})'><p>@item.Nombre</p></a>
     </div>
   </div>
+} *@
+
+@foreach (var item in ViewBag.CandidatosPartido)
+{
+  <section class="candidato-particular">
+    <a href='@Url.Action("VerDetalleCandidato", new {IdCandidato = item.IdCandidato})'>
+    <h1>@item.Nombre @item.Apellido</h1>
+    </a>
+    <a href='@Url.Action("EliminarCandidato",new {IdCandidato = item.IdCandidato,IdPartido=item.IdPartido})'><h3>Eliminar Candidato</h3></a>
+  </section>
 }
 
 @* (int i = 0; i < ViewBag.CandidatosPartido.Count; i++){

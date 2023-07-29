@@ -2,7 +2,7 @@ using System.Data.SqlClient;
 using Dapper;
 
 public static class BD{
-    private static string _connectionString = @"Server=localhost;DataBase=Elecciones;Trusted_Connection=True;";
+    private static string _connectionString = @"Server=DESKTOP-LJS199A\SQLEXPRESS;DataBase=EleccionesSQL;Trusted_Connection=True;";
     private static List<Candidato> listaCandidato = new List<Candidato>();
     private static List<Partido> listaPartido = new List<Partido>();
 
