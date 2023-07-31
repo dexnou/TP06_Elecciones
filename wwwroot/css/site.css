@@ -43,3 +43,25 @@ footer {
   color: blue; /*Ver si sacarlo o no, es solo tema diseño*/
   text-decoration: underline;
 }
+
+/* INDEX */
+.index{
+  text-align: center;
+  margin-left: 1%;
+}
+
+.index img{
+  width: 400px;
+  height: auto;
+}
+
+
+/* Ver Detalle Partido */
+
+
+
+
+
+
+
+

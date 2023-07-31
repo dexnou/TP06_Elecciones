@@ -25,14 +25,6 @@ public class HomeController : Controller
         ViewBag.IdPartido = IdPartido; 
         return View("AgregarCandidato"); //form
     }
-
-    
-    // public IActionResult GuardarCandidato(Candidato can){
-    //     BD.AgregarCandidato(can);
-    //     ViewBag.Partido = BD.VerInfoPartido(can.IdPartido);
-    //     ViewBag.ListarCandidatos = BD.ListarCandidatos(can.IdPartido);
-    //     return View("VerDetallePartido", new{IdPartido = can.IdPartido});
-    // }
     [HttpPost] public IActionResult GuardarCandidato(Candidato can){
         BD.AgregarCandidato(can);
         return RedirectToAction("VerDetallePartido", new {IdPartido=can.IdPartido});

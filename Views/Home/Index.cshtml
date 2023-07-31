@@ -1,13 +1,15 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
-
-@foreach (var item in ViewBag.listaPartidos)
-{
-  <h2>@item.Nombre</h2>
-  <a href='@Url.Action("VerDetallePartido", new{IdPartido = item.IdPartido})'><img src="@item.Logo"></a>
-  <a href='@Url.Action("VerDetallePartido", new{IdPartido = item.IdPartido})'>Ver detalle del partido</a>
-
-}
+<div class="index">
+  @foreach (var item in ViewBag.listaPartidos)
+  { 
+    <div class="partidos">
+      <a href='@Url.Action("VerDetallePartido", new{IdPartido = item.IdPartido})'><img src="@item.Logo"></a>
+      <h2>@item.Nombre</h2>
+      <a href='@Url.Action("VerDetallePartido", new{IdPartido = item.IdPartido})'>Ver detalle del partido</a> <br><br>
+    </div>
+  }
+</div>
 
 
