@@ -2,15 +2,15 @@ using System.Data.SqlClient;
 using Dapper;
 
 public static class BD{
-    private static string _connectionString = @"Server=DESKTOP-LJS199A\SQLEXPRESS;DataBase=EleccionesSQL;Trusted_Connection=True;";
+    private static string _connectionString = @"Server=localhost;DataBase=Elecciones;Trusted_Connection=True;";
     private static List<Candidato> listaCandidato = new List<Candidato>();
     private static List<Partido> listaPartido = new List<Partido>();
 
 
     public static void AgregarCandidato(Candidato can){
-        string sql = "INSERT INTO Candidato(IdCandidato, IdPartido, Apellido, Nombre, FechaNacimiento, Foto, Postulacion) VALUES (@pIdCandidato, @pIdPartido, @pApellido, @pNombre, @pFechaNacimiento, @pFoto, @pPostulacion)";
+        string sql = "INSERT INTO Candidato(IdPartido, Apellido, Nombre, FechaNacimiento, Foto, Postulacion) VALUES (@pIdPartido, @pApellido, @pNombre, @pFechaNacimiento, @pFoto, @pPostulacion)";
         using(SqlConnection db = new SqlConnection(_connectionString)){
-            db.Execute(sql, new {pIdCandidato = can.IdCandidato, pIdPartido = can.IdPartido, pApellido = can.Apellido, pNombre = can.Nombre, pFechaDeNacimiento = can.FechaNacimiento, pFoto = can.Foto, pPostulacion = can.Postulacion});
+            db.Execute(sql, new {pIdPartido = can.IdPartido, pApellido = can.Apellido, pNombre = can.Nombre, pFechaNacimiento = can.FechaNacimiento, pFoto = can.Foto, pPostulacion = can.Postulacion});
         }
     }
 
@@ -25,28 +25,16 @@ public static class BD{
     }
 
     public static Partido VerInfoPartido(int IdPartido){  
-        for(int i= 0; i<listaPartido.Count(); i++){
-            if(listaPartido[i].IdPartido == IdPartido){
-                return listaPartido[i];
-            }
+        Partido partido;
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+             string sql = "SELECT * FROM Partido WHERE IdPartido = @pIdPartido";
+             partido = db.QueryFirstOrDefault<Partido>(sql, new { pIdPartido = IdPartido });
         }
-        return null;
-        //Version sql
-        // using (SqlConnection db = new SqlConnection(_connectionString))
-        // {
-        //     string sql = "SELECT * FROM Partido WHERE IdPartido = @pIdPartido";
-        //     listaPartido = db.QueryFirstOrDefault<Partido>(sql, new { pIdPartido = IdPartido });
-        // }
-        // return listaPartido; 
+        return partido; 
     }
     
     public static Candidato VerInfoCandidatos(int IdCandidato){
-        // for(int i= 0; i<listaCandidato.Count(); i++){
-        //     if(listaCandidato[i].IdCandidato == IdCandidato){
-        //         return listaCandidato[i];
-        //     }
-        // }
-        // return null;
         Candidato candidato;
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
@@ -54,8 +42,6 @@ public static class BD{
             candidato = db.QueryFirstOrDefault<Candidato>(sql, new { pIdCandidato = IdCandidato });
         }
         return candidato; 
-
-
     }
     public static List<Partido> ListarPartidos(){
         using(SqlConnection db = new SqlConnection(_connectionString))
