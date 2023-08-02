@@ -3,7 +3,9 @@
 <p>@ViewBag.CandidatosInfo.Nombre</p>
 <p>@ViewBag.CandidatosInfo.Apellido</p>
 <p>@ViewBag.CandidatosInfo.FechaNacimiento</p>
+<div class="fotopartidodetalle">
 <img src="@ViewBag.CandidatosInfo.Foto" alt="Foto Candidato">
+</div>
 <p>@ViewBag.CandidatosInfo.Postulacion</p>
 
 <a href='@Url.Action("VerDetallePartido", new{IdPartido = ViewBag.CandidatosInfo.IdPartido})'>Volver al partido</a>

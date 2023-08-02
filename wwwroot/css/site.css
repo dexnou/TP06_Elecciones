@@ -58,6 +58,10 @@ footer {
 
 /* Ver Detalle Partido */
 
+.fotopartidodetalle img {
+  width: 400px;
+  height: auto;
+}
 
 
 
